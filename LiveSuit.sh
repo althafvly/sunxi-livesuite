@@ -1,16 +1,16 @@
 #!/bin/bash
 
 APP=LiveSuit
-TOP_DIR=`pwd`
+TOP_DIR=$(pwd)
 
 MACHINE=$(uname -m)
 if [ ${MACHINE} == 'x86_64' ]; then
-	BIN_DIR="x86-64"	
+    BIN_DIR="x86-64"
 elif [ ${MACHINE} == 'i686' ]; then
-	BIN_DIR="x86"
+    BIN_DIR="x86"
 else
-	echo "Error: unknown architecture ${MACHINE}"
-	exit
+    echo "Error: unknown architecture ${MACHINE}"
+    exit
 fi
 
 echo "Starting ${BIN_DIR}/${APP}."
