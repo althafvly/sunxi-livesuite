@@ -5,3 +5,5 @@ awusb/*.ko
 awusb/*.mod.c
 awusb/*.o
 awusb/modules.order
+x86*/livesuit.ini
+x86*/tools.scj
