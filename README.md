@@ -1,42 +1,44 @@
-This repository contains the latest LiveSuit binary and supporting 
+This repository contains the latest LiveSuit binary and supporting
 kernel module.
 
 LiveSuit is a tool to flash Images to the NAND of Allwinner devices.
 
-The latest version of this software can be retrieved from:
-https://github.com/linux-sunxi/sunxi-livesuit
-
 For more information on this repository or on this utility, check our
 wiki at http://linux-sunxi.org/LiveSuit
 
-Installing the kernel module.
------------------------------
+## Install dependencies
+```
+sudo apt-get install dkms git build-essential zlib1g-dev
+wget https://ppa.launchpadcontent.net/linuxuprising/libpng12/ubuntu/pool/main/libp/libpng/libpng_1.2.54.orig.tar.xz
+tar Jxfv libpng_1.2.54.orig.tar.xz
+cd libpng-1.2.54
+./configure
+make
+sudo make install
+sudo ln -s /usr/local/lib/libpng12.so.0.54.0 /usr/lib/libpng12.so
+sudo ln -s /usr/local/lib/libpng12.so.0.54.0 /usr/lib/libpng12.so.0
+```
 
-First you need to install dkms on your system.
+## Installing the kernel module for usb drivers.
+```
+git clone https://github.com/linux-sunxi/sunxi-livesuite.git
+cd sunxi-livesuite/awusb
+sudo make
+sudo cp awusb.ko /lib/modules/`uname -r`/kernel/
+sudo depmod -a
+sudo modprobe awusb
+cd ..
+```
 
-On a debian or ubuntu this is as simple as (as root):
-# apt-get install dkms
-
-You can then descend into the awusb/ directory and just run:
-> make
-
-Then copy it over to to your kernel modules:
-# cp awusb.ko /lib/modules/`uname -r`/kernel/
-
-Load the module by running:
-# modprobe awusb
-
-Running LiveSuit.
------------------
-
-Just run the top level script:
-> ./LiveSuit.sh
+## Running LiveSuit.
+```
+sudo bash LiveSuit.sh
+```
 
 This will determine whether your system is x86 or x86-64 and will then
 start the right binary.
 
-Flashing your device.
----------------------
+## Flashing your device.
 
 Warning: if you attach your FEL enabled device before you start
 LiveSuit, then LiveSuit will not detect it. You need to first start the
