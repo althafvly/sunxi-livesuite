@@ -30,6 +30,12 @@ sudo modprobe awusb
 cd ..
 ```
 
+## Install USB Rules
+```
+cp awusb/50-awusb.rules /etc/udev/rules.d/50-awusb.rules
+sudo udevadm control --reload-rules
+```
+
 ## Running LiveSuit.
 ```
 sudo bash LiveSuit.sh
