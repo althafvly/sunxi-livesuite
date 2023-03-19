@@ -18,7 +18,7 @@ sudo apt-get install dkms git libpng12-0
 git clone https://github.com/linux-sunxi/sunxi-livesuite.git
 cd sunxi-livesuite/awusb
 sudo make
-sudo cp awusb.ko /lib/modules/`uname -r`/kernel/
+sudo make install
 sudo depmod -a
 sudo modprobe awusb
 cd ..
@@ -26,7 +26,7 @@ cd ..
 
 ## Install USB Rules
 ```
-cp awusb/50-awusb.rules /etc/udev/rules.d/50-awusb.rules
+sudo cp awusb/50-awusb.rules /etc/udev/rules.d/50-awusb.rules
 sudo udevadm control --reload-rules
 ```
 
