@@ -13,6 +13,12 @@ sudo apt update
 sudo apt-get install dkms git libpng12-0
 ```
 
+## Change to a supported kernel
+```
+wget https://raw.githubusercontent.com/pimlie/ubuntu-mainline-kernel.sh/master/ubuntu-mainline-kernel.sh
+sudo bash ubuntu-mainline-kernel.sh -i 5.19.2
+```
+
 ## Installing the kernel module for usb drivers.
 ```
 git clone https://github.com/linux-sunxi/sunxi-livesuite.git
